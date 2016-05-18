@@ -1,0 +1,18 @@
+Sub findandreplace()
+    Dim textinput As Range
+    Dim fixarray As Range
+    Dim original As Range
+    Dim replace As Range
+    
+    Set textinput = Application.InputBox(prompt:="textinput", Type:=8)
+    Set fixarray = Application.InputBox(prompt:="Original & Replacement", Type:=8)
+    Set original = fixarray.Columns(1)
+    Set replace = fixarray.Columns(2)
+    
+    Dim cell As Range
+    
+    For Each cell In original.Cells:
+        textinput.Cells.replace What:=cell.Value, Replacement:=replace.Rows(cell.Row - original.Row + 1).Value, LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False
+    Next cell
+   
+End Sub
